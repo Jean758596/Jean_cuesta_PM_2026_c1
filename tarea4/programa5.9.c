@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+/* Búsqueda secuencial en arreglos desordenados */
+
+const int MAX = 100;
+
+/* Prototipos */
+void Lectura(int[], int);
+int Busca(int[], int, int);
+
+int main(void)
+{
+    int RES, ELE, TAM, VEC[MAX];
+
+    /* Validar tamaño */
+    do
+    {
+        printf("Ingrese el tamaño del arreglo: ");
+        scanf("%d", &TAM);
+    }
+    while (TAM > MAX || TAM < 1);
+
+    Lectura(VEC, TAM);
+
+    printf("\nIngrese el elemento a buscar: ");
+    scanf("%d", &ELE);
+
+    RES = Busca(VEC, TAM, ELE);
+
+    if (RES)
+        printf("\nEl elemento se encuentra en la posición %d", RES);
+    else
+        printf("\nEl elemento no se encuentra en el arreglo");
+
+    return 0;
+}
+
+/* Función para leer el arreglo */
+void Lectura(int A[], int T)
+{
+    int I;
+
+    for (I = 0; I < T; I++)
+    {
+        printf("Ingrese el elemento %d: ", I + 1);
+        scanf("%d", &A[I]);
+    }
+}
+
+/* Búsqueda secuencial */
+int Busca(int A[], int T, int K)
+{
+    int I = 0;
+
+    while (I < T)
+    {
+        if (A[I] == K)
+            return I + 1;  /* +1 porque el usuario cuenta desde 1 */
+        I++;
+    }
+
+    return 0;  /* No encontrado */
+}
